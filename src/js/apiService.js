@@ -1,10 +1,13 @@
 // import imageCard from "../templates/imagecard.hbs";
 
+// const KEY = 'da596067165f304bd61b992449ff5b38';
+// const BASE = 'https://api.themoviedb.org/3';
+
 export default {
   query: "",
   page: 1,
-  perPage: 12,
-  baseUrl: `https://pixabay.com/api/`,
+  // perPage: 12,
+  baseUrl: `https://api.themoviedb.org/3`,
 
   get queryValue() {
     return this.query;
@@ -14,10 +17,10 @@ export default {
   },
 
   async getFetch(value = this.query) {
-    let key = `20004677-e0c621e42f0d912e7de39a0de`;
+    let key = `da596067165f304bd61b992449ff5b38`;
     this.queryValue = value;
 
-    let params = `?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=${this.perPage}&key=${key}`;
+    let params = `/trending/all/day?&page=${this.page}&api_key=${key}`;
 
     let url = this.baseUrl + params;
 

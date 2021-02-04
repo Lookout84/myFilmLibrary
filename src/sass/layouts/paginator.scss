@@ -1,0 +1,52 @@
+$left-arrow-img: url('../images/pagination/arrow-left.svg');
+$right-arrow-img: url('../images/pagination/arrow-right.svg');
+$arrows-background-color: #f7f7f7;
+$button-size: 40px;
+
+#paginator-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 50px;
+  margin-top: 60px;
+  padding: 0;
+
+  li {
+    width: $button-size;
+    height: $button-size;
+    margin: 0 5px;
+    background: none;
+  }
+
+  span,
+  a {
+    width: 100%;
+    height: 100%;
+    line-height: 38px;
+    border: 0ch;
+    background: none;
+    box-shadow: none;
+    text-decoration: none;
+  }
+
+  .current {
+    background-color: $focus-color;
+  }
+
+  .next,
+  .prev {
+    color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $arrows-background-color;
+  }
+
+  .prev {
+    background-image: $left-arrow-img;
+  }
+
+  .next {
+    background-image: $right-arrow-img;
+  }
+}

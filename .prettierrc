@@ -3,9 +3,10 @@
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
-  "stringleQuote": true,
+  "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
+  "arrowParens": "avoid",
   "proseWrap": "always"
 }

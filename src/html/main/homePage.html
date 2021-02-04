@@ -1,0 +1,67 @@
+<header class="header">
+  <div class="container">
+    <div class="main-navigation">
+      <a href="#" class="link">
+        <svg class="icon-logo" width="24" height="24">
+          <use href="../../images/sprite.svg#filmlogo"></use>
+        </svg>
+        <span class="text-logo">Filmoteka</span>
+      </a>
+
+      <ul class="list navigation site-nav js-logged-in nav-hidden">
+        <li class="nav-list icon-item">
+          <a href="#" class="link nav-link js-logout">LOGOUT</a>
+        </li>
+        <li class="nav-list">
+          <a href="#" class="link nav-link current">HOME</a>
+        </li>
+        <li class="nav-list">
+          <a href="#" data-link class="link nav-link">MY LIBRARY</a>
+        </li>
+      </ul>
+
+      <ul class="list navigation site-nav js-logged-out nav-hidden">
+        <li class="nav-list">
+          <a href="#" class="link nav-link js-login">LOGIN</a>
+        </li>
+
+        <li class="nav-list">
+          <a href="#" class="link nav-link js-signup">SIGN UP</a>
+        </li>
+      </ul>
+      <div class="auth-backdrop hidden js-backdrop">
+        <div class="auth-modal js-modal">
+          <form class="js-register-form"></form>
+          <form class="js-login-form"></form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Разметка формы для страницы home page -->
+    <form class="form">
+      <input
+        type="text"
+        name="query"
+        placeholder="Поиск фильмов"
+        class="form-input"
+      />
+      <button type="submit" class="form-button">
+        <svg class="icon-logo" width="12" height="12">
+          <use href="../../images/sprite.svg#search"></use>
+        </svg>
+      </button>
+    </form>
+
+    <p class="search-error hidden">
+      Search result not successful. Enter the correct movie name and
+    </p>
+  </div>
+</header>
+<main>
+  <section class="section" id="section">
+    <div class="container">
+      <ul class="list films-list"></ul>
+    </div>
+  </section>
+  <div id="paginator-placeholder"></div>
+</main>

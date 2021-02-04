@@ -1,6 +1,7 @@
-export default {
-  input: document.getElementById("query"),
-  searchForm: document.querySelector(".js-search-form"),
-  ulGallery: document.querySelector(".gallery"),
-  btnSearch: document.querySelector(".btn-search"),
-};
+export default function getRef() {
+  const refs = {
+    bodyRef: document.querySelector('body'),
+  };
+
+  return refs;
+}
