@@ -79,9 +79,11 @@ export default class ApiService {
 
   fetchDetailFilmWithNameGerges() {
     return this.fetchDetailFilm().then(data => {
+      const baseUrl = `https://image.tmdb.org/t/p/w500`;
+      const imgError = `./images/img-error.png`;
       return {
         ...data,
-
+        
         release_date: data.release_date.split('-')[0],
         genresName: data.genres.map(id => (id.name = ' ' + id.name)),
       };
@@ -131,17 +133,18 @@ export default class ApiService {
   }
   updateImgError(data) {
     const baseUrl = `https://image.tmdb.org/t/p/w500`;
-    const imgError = `https://i.ibb.co/z6HLCPN/img-error.png`;
+    const imgError = `./images/img-error.png`;
+    // const imgError = `https://i.ibb.co/z6HLCPN/img-error.png`;
     return data.map(elem => {
       let baseUrlImg = elem.backdrop_path;
       let bigUrlImg = elem.poster_path;
-      if (typeof elem.backdrop_path === null) {
+      if (typeof elem.backdrop_path != 'string') {
         elem.backdrop_path = `${imgError}`;
         elem.poster_path = `${imgError}`;
+      } else {
+        elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
+        elem.poster_path = `${baseUrl}${bigUrlImg}`;
       }
-      elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
-      elem.poster_path = `${baseUrl}${bigUrlImg}`;
-
       return elem;
     });
   }

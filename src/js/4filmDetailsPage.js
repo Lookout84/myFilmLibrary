@@ -48,6 +48,9 @@ export default function openModal(id) {
 
   apiService.id = id;
   apiService.fetchDetailFilmWithNameGerges().then(data => {
+    console.dir(data);
+    // apiService.updateImgError(data);
+    console.log(data);
     modal.classList.remove('is-hidden');
     refs.modalContent.insertAdjacentHTML('beforeend', detailPageTemplate(data));
     monitorButtonStatusText();
@@ -152,3 +155,7 @@ export default function openModal(id) {
     }
   }
 }
+
+// apiService.fetchDetailFilm().then(data => {
+//   console.log(data);
+// });

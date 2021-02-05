@@ -188,7 +188,7 @@ export default function renderHomePage() {
 apiService.fetchPopularFilms().then(data => {
   console.log(data);
 });
-// apiService.insertGenres().then(arr => {
-//   apiService.updateImgError(arr);
-//   console.log(arr);
-// });
+apiService.insertGenres().then(arr => {
+  apiService.updateImgError(arr);
+  console.log(arr);
+});
