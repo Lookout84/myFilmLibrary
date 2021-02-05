@@ -129,7 +129,22 @@ export default class ApiService {
         });
     });
   }
+  updateImgError(data) {
+    const baseUrl = `https://image.tmdb.org/t/p/w500/`;
+    const imgError = `./images/img-error.png`;
+    let baseUrlImg = data.backdrop_path;
+    let bigUrlImg = data.poster_path;
+    return data.map(elem => {
+      if (typeof elem.backdrop_path != 'string') {
+        elem.backdrop_path = `${imgError}`;
+        elem.poster_path = `${imgError}`;
+      }
+      elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
+      elem.poster_path = `${baseUrl}${bigUrlImg}`;
 
+      return elem;
+    });
+  }
   get query() {
     return this.searchQ;
   }

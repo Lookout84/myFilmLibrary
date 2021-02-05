@@ -59,6 +59,8 @@ export default function renderHomePage() {
       apiService
         .insertGenres()
         .then(results => {
+          // updateImgError(results)
+          // console.log(results);
           loader.spinner.close();
           ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
 
@@ -179,3 +181,32 @@ export default function renderHomePage() {
   }
   auth.init();
 }
+
+const formattingFetchData = (arrData) => {
+  const baseImageDataUrl = `https://image.tmdb.org/t/p/w500/`;
+  const pathImageDefault = `./images/temp.png`;
+  return arrData.map(el => {
+    let imgPath = el.backdrop_path;
+    let imgPathBig = el.poster_path;
+    let release_date = el.release_date;
+    (typeof release_date === 'undefined' || release_date === "")
+      ? el.release_date = 'unknown'
+      : el.release_date = el.release_date.slice(0, 4);
+    const verifyImgBigPath = () => {
+      el.backdrop_path = (typeof imgPathBig !== "string") 
+        ? `${pathImageDefault}`
+        : `${baseImageDataUrl}${imgPathBig}`      
+    }
+    (typeof imgPath !== "string")
+      ? verifyImgBigPath()
+      : el.backdrop_path = `${baseImageDataUrl}${imgPath}`
+    return el
+  })
+}
+
+apiService.insertGenres().then(arr => {
+  console.dir(arr);
+  console.log(arr.backdrop_path);
+  apiService.updateImgError(arr);
+  console.log(arr);
+});
