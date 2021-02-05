@@ -130,12 +130,12 @@ export default class ApiService {
     });
   }
   updateImgError(data) {
-    const baseUrl = `https://image.tmdb.org/t/p/w500/`;
-    const imgError = `./images/img-error.png`;
-    let baseUrlImg = data.backdrop_path;
-    let bigUrlImg = data.poster_path;
+    const baseUrl = `https://image.tmdb.org/t/p/w500`;
+    const imgError = `https://i.ibb.co/z6HLCPN/img-error.png`;
     return data.map(elem => {
-      if (typeof elem.backdrop_path != 'string') {
+      let baseUrlImg = elem.backdrop_path;
+      let bigUrlImg = elem.poster_path;
+      if (typeof elem.backdrop_path === null) {
         elem.backdrop_path = `${imgError}`;
         elem.poster_path = `${imgError}`;
       }

@@ -1,10 +1,11 @@
 {{#each this}}
 
 <li class="film-item">
-    <img class="img-films" data-id="{{id}}" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}"
-        onerror="this.onerror=null;this.src='./images/img-error.png';" />
+    <img class="img-films" data-id="{{id}}" src="{{poster_path}}" alt="{{title}}" />
     <h2 class="tittle-film">{{title}}</h2>
 
     <p class="genre-film">{{genres}} | {{release_date}}</p>
 </li>
 {{/each}}
+
+{{!-- onerror="this.onerror=null;this.src='./images/img-error.png';" --}}

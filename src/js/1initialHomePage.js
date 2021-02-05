@@ -59,6 +59,7 @@ export default function renderHomePage() {
       apiService
         .insertGenres()
         .then(results => {
+          apiService.updateImgError(results);
           // updateImgError(results)
           // console.log(results);
           loader.spinner.close();
@@ -133,6 +134,8 @@ export default function renderHomePage() {
       apiService.fetchFilmsCount().then(totalResults => {
         if (totalResults > 0) {
           apiService.insertSearhGenres().then(data => {
+            apiService.updateImgError(data);
+            console.log(data);
             if (data !== 0) {
               loader.spinner.show();
               ulRef.innerHTML = '';
@@ -182,31 +185,10 @@ export default function renderHomePage() {
   auth.init();
 }
 
-const formattingFetchData = (arrData) => {
-  const baseImageDataUrl = `https://image.tmdb.org/t/p/w500/`;
-  const pathImageDefault = `./images/temp.png`;
-  return arrData.map(el => {
-    let imgPath = el.backdrop_path;
-    let imgPathBig = el.poster_path;
-    let release_date = el.release_date;
-    (typeof release_date === 'undefined' || release_date === "")
-      ? el.release_date = 'unknown'
-      : el.release_date = el.release_date.slice(0, 4);
-    const verifyImgBigPath = () => {
-      el.backdrop_path = (typeof imgPathBig !== "string") 
-        ? `${pathImageDefault}`
-        : `${baseImageDataUrl}${imgPathBig}`      
-    }
-    (typeof imgPath !== "string")
-      ? verifyImgBigPath()
-      : el.backdrop_path = `${baseImageDataUrl}${imgPath}`
-    return el
-  })
-}
-
-apiService.insertGenres().then(arr => {
-  console.dir(arr);
-  console.log(arr.backdrop_path);
-  apiService.updateImgError(arr);
-  console.log(arr);
+apiService.fetchPopularFilms().then(data => {
+  console.log(data);
 });
+// apiService.insertGenres().then(arr => {
+//   apiService.updateImgError(arr);
+//   console.log(arr);
+// });
