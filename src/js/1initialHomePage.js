@@ -59,7 +59,7 @@ export default function renderHomePage() {
       apiService
         .insertGenres()
         .then(results => {
-          apiService.updateImgError(results);
+          // apiService.updateImgError(results);
           // updateImgError(results)
           // console.log(results);
           loader.spinner.close();
@@ -134,7 +134,7 @@ export default function renderHomePage() {
       apiService.fetchFilmsCount().then(totalResults => {
         if (totalResults > 0) {
           apiService.insertSearhGenres().then(data => {
-            apiService.updateImgError(data);
+            // apiService.updateImgError(data);
             console.log(data);
             if (data !== 0) {
               loader.spinner.show();
@@ -186,9 +186,10 @@ export default function renderHomePage() {
 }
 
 apiService.fetchPopularFilms().then(data => {
+  apiService.updateImgError(data);
   console.log(data);
 });
-apiService.insertGenres().then(arr => {
-  apiService.updateImgError(arr);
-  console.log(arr);
-});
+// apiService.insertGenres().then(arr => {
+//   apiService.updateImgError(arr);
+//   console.log(arr);
+// });
