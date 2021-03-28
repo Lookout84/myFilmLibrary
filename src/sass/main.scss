@@ -9,3 +9,8 @@
 @import './layouts/spinner.scss';
 @import './layouts/paginator.scss';
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}

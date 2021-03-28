@@ -1,36 +1,40 @@
-<header class="header library-header">
-  <div class="container">
-    <div class="main-navigation">
-      <a href="#" class="link">
-        <svg class="icon-logo" width="24" height="24">
-          <use href="../../images/sprite.svg#filmlogo"></use>
-        </svg>
-        <span class="text-logo">Filmoteka</span>
-      </a>
+<div class="sticky-footer-wrapper">
+  <header class="header library-header">
+    <div class="container">
+      <div class="main-navigation">
+        <a href="#" class="link">
+          <svg class="icon-logo" width="24" height="24">
+            <use href="../../images/sprite.svg#filmlogo"></use>
+          </svg>
+          <span class="text-logo">Filmoteka</span>
+        </a>
 
-      <ul class="list navigation site-nav">
-        <li class="nav-list">
-          <a href="#" data-link class="link nav-link">HOME</a>
+        <ul class="list navigation site-nav">
+          <li class="nav-list">
+            <a href="#" data-link class="link nav-link">HOME</a>
+          </li>
+          <li class="nav-list">
+            <a href="#" class="link nav-link current">MY LIBRARY</a>
+          </li>
+        </ul>
+      </div>
+      <ul class="list library-nav">
+        <li class="library-item">
+          <button type="button" class="library-btn watchedPageBtn current">
+            WATCHED
+          </button>
         </li>
-        <li class="nav-list">
-          <a href="#" class="link nav-link current">MY LIBRARY</a>
+        <li class="library-item">
+          <button type="button" class="library-btn queuePageBtn">QUEUE</button>
         </li>
       </ul>
     </div>
-    <ul class="list library-nav">
-      <li class="library-item">
-        <button type="button" class="library-btn watchedPageBtn current">WATCHED</button>
-      </li>
-      <li class="library-item">
-        <button type="button" class="library-btn queuePageBtn">QUEUE</button>
-      </li>
-    </ul>
-  </div>
-</header>
-<main>
-  <section class="section">
-    <div class="container">
-      <ul class="list films-list"></ul>
-    </div>
-  </section>
-</main>
+  </header>
+  <main>
+    <section class="section">
+      <div class="container">
+        <ul class="list films-list"></ul>
+      </div>
+    </section>
+  </main>
+</div>

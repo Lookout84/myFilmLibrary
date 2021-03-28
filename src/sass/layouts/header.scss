@@ -205,6 +205,13 @@
 .hidden {
   visibility: hidden;
 }
+.current.modal-buttons {
+  background-color: $focus-color;
+  color: white;
+  border-color: $focus-color;
+  border: none;
+  outline: none;
+}
 
 .search-error {
   margin-top: 0;

@@ -5,8 +5,10 @@ import ApiService from './js/2searchAndPlaginationHomePage';
 import { data } from 'autoprefixer';
 import detailPage from './templates/detailPage.hbs';
 import renderHomePage from './js/1initialHomePage';
+import libraryPage from './js/5libraryPage';
 
-const bodyRef = document.querySelector('body');
-const apiService = new ApiService();
-
-renderHomePage();
+if (localStorage.getItem('page') === 'library') {
+  libraryPage();
+} else {
+  renderHomePage();
+}

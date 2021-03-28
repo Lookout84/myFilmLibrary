@@ -36,3 +36,11 @@ export function getDisplayedPages() {
   }
   return 3;
 }
+
+export function getPaginatorPlaceholder() {
+  const ref = document.querySelector('#paginator-placeholder');
+  if (!ref) {
+    console.warn('Paginator placeholder is not found');
+  }
+  return ref;
+}
