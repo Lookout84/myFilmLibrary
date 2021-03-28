@@ -1,8 +1,9 @@
 'use strict';
 
-import { adoptPPFetch } from './plugins';
+import { adoptPPFetch } from './plagins';
 import { screenSize, getPerPage } from './variables';
 import img from '../images/img-error.png';
+import jQuery from 'jquery';
 
 const KEY = 'da596067165f304bd61b992449ff5b38';
 const BASE = 'https://api.themoviedb.org/3';
@@ -27,7 +28,12 @@ export default class ApiService {
       perPage: getPerPage(),
       doFetch: page => {
         const url = `${BASE}/trending/movie/day?&page=${page}&api_key=${KEY}`;
-        return fetch(url).then(response => response.json());
+        return fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            // this.page += 1;
+            return data.results;
+          });
       },
     });
   }
@@ -48,7 +54,11 @@ export default class ApiService {
       doFetch: page => {
         const url = `${BASE}/search/movie?&page=${page}&api_key=${KEY}&query=${this.searchQ}`;
 
-        return fetch(url).then(response => response.json());
+        return fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            return data.results;
+          });
       },
     });
   }
@@ -99,13 +109,12 @@ export default class ApiService {
 
   insertSearhGenres() {
     return this.fetchFilms().then(data => {
+      console.log(data);
       return this.fetchGenres()
         .then(genres => {
           return data.map(film => ({
             ...film,
-            release_date: film.release_date
-              ? film.release_date.split('-')[0]
-              : 'No release date',
+            release_date: film.release_date.split('-')[0],
             genres: film.genre_ids
               .map(id =>
                 genres
@@ -125,53 +134,20 @@ export default class ApiService {
   updateImgError(data) {
     const baseUrl = `https://image.tmdb.org/t/p/w500`;
     const imgError = `${img}`;
-
     return data.map(elem => {
       let baseUrlImg = elem.backdrop_path;
       let bigUrlImg = elem.poster_path;
-      let date = elem.release_date;
-      let genres = elem.genres;
-      if (genres.length == 0) {
-        elem.genres.push('No genres');
-      }
-
-      if (typeof date === 'undefined') {
-        elem.release_date = 'No release date';
-      }
       if (typeof elem.backdrop_path != 'string') {
         elem.backdrop_path = `${imgError}`;
-      } else {
-        elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
-      }
-      if (typeof elem.poster_path != 'string') {
         elem.poster_path = `${imgError}`;
       } else {
+        elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
         elem.poster_path = `${baseUrl}${bigUrlImg}`;
       }
       return elem;
     });
   }
-
-  imgErrorDetailFilm(film) {
-    const baseUrl = 'https://image.tmdb.org/t/p/original';
-    const posterPath = film.poster_path;
-    const imgError = `${img}`;
-    if (typeof film.poster_path !== 'string') {
-      film.poster_path = imgError;
-    } else {
-      if (posterPath.includes(baseUrl)) {
-        film.poster_path = posterPath;
-        return film;
-      }
-      if (posterPath.includes(imgError)) {
-        film.poster_path = posterPath;
-        return film;
-      }
-      film.poster_path = `${baseUrl}${film.poster_path}`;
-    }
-    return film;
-  }
-
+  
   get query() {
     return this.searchQ;
   }
